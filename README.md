@@ -143,3 +143,5 @@ Before treating the site as launch-ready:
 ## License
 
 No license file is included. Treat all code, copy, and brand assets as proprietary unless the project owner adds a license.
+
+Added to git
