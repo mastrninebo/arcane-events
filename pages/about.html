@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About — Arcane Events</title>
+
+    <meta
+        name="description"
+        content="Learn more about Arcane Events, our approach, and what makes us different."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --navy: #101b3a;
+            --cream: #f5f0e6;
+            --coral: #f26b5b;
+            --yellow: #f4c84b;
+            --white: #ffffff;
+            --black: #111111;
+            --border: rgba(16, 27, 58, 0.15);
+
+            --heading: "Space Grotesk", sans-serif;
+            --body: "DM Sans", sans-serif;
+
+            --container: 1240px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 80px));
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            padding: 28px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--heading);
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .menu-button {
+            width: 64px;
+            height: 64px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cream);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: transform 0.25s ease;
+        }
+
+        .menu-button:hover {
+            transform: rotate(8deg);
+        }
+
+        /* Menu overlay */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: var(--coral);
+            padding: 28px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition:
+                transform 0.45s ease,
+                opacity 0.35s ease,
+                visibility 0.45s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-close {
+            width: 64px;
+            height: 64px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cream);
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .menu-links {
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .menu-links a {
+            width: fit-content;
+            font-family: var(--heading);
+            font-size: clamp(42px, 8vw, 100px);
+            line-height: 0.95;
+            font-weight: 600;
+            letter-spacing: -4px;
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-links a:hover {
+            opacity: 0.55;
+        }
+
+        /* About hero */
+
+        .about-hero {
+            min-height: 90vh;
+            background: var(--yellow);
+            display: flex;
+            align-items: flex-end;
+            padding: 160px 0 90px;
+        }
+
+        .about-hero-content {
+            max-width: 1050px;
+        }
+
+        .eyebrow {
+            margin-bottom: 28px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-hero h1 {
+            font-family: var(--heading);
+            font-size: clamp(65px, 11vw, 155px);
+            line-height: 0.85;
+            font-weight: 600;
+            letter-spacing: -8px;
+        }
+
+        .about-hero h1 span {
+            display: block;
+        }
+
+        /* Introduction */
+
+        .intro {
+            padding: 130px 0;
+            background: var(--cream);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 100px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .intro-content h2 {
+            max-width: 850px;
+            margin-bottom: 40px;
+            font-family: var(--heading);
+            font-size: clamp(40px, 5vw, 72px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            font-weight: 600;
+        }
+
+        .intro-content p {
+            max-width: 720px;
+            margin-bottom: 24px;
+            font-size: 19px;
+            line-height: 1.65;
+            color: rgba(16, 27, 58, 0.75);
+        }
+
+        /* Why us */
+
+        .why-us {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 130px 0;
+        }
+
+        .why-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+            margin-bottom: 90px;
+        }
+
+        .why-header h2 {
+            max-width: 700px;
+            font-family: var(--heading);
+            font-size: clamp(48px, 7vw, 92px);
+            line-height: 0.92;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .why-description {
+            max-width: 350px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: rgba(245, 240, 230, 0.65);
+        }
+
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(245, 240, 230, 0.25);
+        }
+
+        .reason {
+            padding: 40px 35px 20px 0;
+            border-right: 1px solid rgba(245, 240, 230, 0.25);
+        }
+
+        .reason:not(:first-child) {
+            padding-left: 35px;
+        }
+
+        .reason:last-child {
+            border-right: 0;
+        }
+
+        .reason-number {
+            display: block;
+            margin-bottom: 70px;
+            font-family: var(--heading);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .reason h3 {
+            margin-bottom: 20px;
+            font-family: var(--heading);
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .reason p {
+            max-width: 330px;
+            color: rgba(245, 240, 230, 0.65);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Statement */
+
+        .statement {
+            padding: 140px 0;
+            background: var(--coral);
+        }
+
+        .statement h2 {
+            max-width: 1050px;
+            font-family: var(--heading);
+            font-size: clamp(48px, 8vw, 110px);
+            line-height: 0.9;
+            letter-spacing: -6px;
+            font-weight: 600;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: var(--cream);
+            padding: 130px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            max-width: 900px;
+            margin: 0 auto 45px;
+            font-family: var(--heading);
+            font-size: clamp(52px, 8vw, 105px);
+            line-height: 0.9;
+            letter-spacing: -6px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            padding: 0 32px;
+            background: var(--navy);
+            color: var(--cream);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--coral);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        footer {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 70px 0 35px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            padding-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-family: var(--heading);
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .footer-column span {
+            margin-bottom: 10px;
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            font-size: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            opacity: 0.55;
+        }
+
+        .footer-bottom {
+            padding-top: 25px;
+            border-top: 1px solid rgba(245, 240, 230, 0.18);
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 12px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .container {
+                width: min(var(--container), calc(100% - 40px));
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .why-header {
+                flex-direction: column;
+                margin-bottom: 60px;
+            }
+
+            .reasons {
+                grid-template-columns: 1fr;
+            }
+
+            .reason,
+            .reason:not(:first-child) {
+                padding: 35px 0;
+                border-right: 0;
+                border-bottom: 1px solid rgba(245, 240, 230, 0.25);
+            }
+
+            .reason:last-child {
+                border-bottom: 0;
+            }
+
+            .reason-number {
+                margin-bottom: 40px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 20px 0;
+            }
+
+            .menu-button,
+            .menu-close {
+                width: 54px;
+                height: 54px;
+            }
+
+            .menu-overlay {
+                padding: 20px 0;
+            }
+
+            .menu-links {
+                height: calc(100vh - 100px);
+            }
+
+            .menu-links a {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+
+            .about-hero {
+                min-height: 75vh;
+                padding: 130px 0 55px;
+            }
+
+            .about-hero h1 {
+                font-size: clamp(60px, 18vw, 100px);
+                letter-spacing: -5px;
+            }
+
+            .intro,
+            .why-us,
+            .statement,
+            .cta {
+                padding: 85px 0;
+            }
+
+            .intro-content h2 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .intro-content p {
+                font-size: 17px;
+            }
+
+            .why-header h2 {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+
+            .statement h2,
+            .cta h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="../index.html" class="logo">ARCANE</a>
+
+            <button
+                class="menu-button"
+                id="menuOpen"
+                aria-label="Open navigation menu"
+            >
+                MENU
+            </button>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <div class="container">
+            <div class="menu-header">
+                <a href="../index.html" class="logo">ARCANE</a>
+
+                <button
+                    class="menu-close"
+                    id="menuClose"
+                    aria-label="Close navigation menu"
+                >
+                    ×
+                </button>
+            </div>
+
+            <nav class="menu-links">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="media.html">Media</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-hero-content">
+                    <p class="eyebrow">About Arcane Events</p>
+
+                    <h1>
+                        <span>More than</span>
+                        <span>an event.</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro">
+            <div class="container">
+                <div class="intro-grid">
+
+                    <div>
+                        <p class="section-label">Who we are</p>
+                    </div>
+
+                    <div class="intro-content">
+                        <h2>
+                            We create experiences people don't just attend.
+                        </h2>
+
+                        <p>
+                            Arcane Events is an events and experiences company
+                            focused on creating memorable moments through
+                            thoughtful planning, creative direction and
+                            exceptional execution.
+                        </p>
+
+                        <p>
+                            From the first idea to the final guest leaving the
+                            room, we bring together the people, details and
+                            energy required to make an event feel intentional.
+                        </p>
+
+                        <p>
+                            Our work is built around one simple idea: an event
+                            should leave an impression long after it ends.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="why-us">
+            <div class="container">
+
+                <div class="why-header">
+                    <h2>Why Arcane?</h2>
+
+                    <p class="why-description">
+                        We combine creativity with structure, turning ambitious
+                        ideas into experiences that feel effortless to the
+                        people inside them.
+                    </p>
+                </div>
+
+                <div class="reasons">
+
+                    <article class="reason">
+                        <span class="reason-number">01</span>
+
+                        <h3>Creative thinking</h3>
+
+                        <p>
+                            We approach every brief from a fresh perspective,
+                            looking for ideas that give an event its own
+                            identity.
+                        </p>
+                    </article>
+
+                    <article class="reason">
+                        <span class="reason-number">02</span>
+
+                        <h3>Attention to detail</h3>
+
+                        <p>
+                            Great experiences are built through the details.
+                            We focus on the elements guests notice and the ones
+                            they don't.
+                        </p>
+                    </article>
+
+                    <article class="reason">
+                        <span class="reason-number">03</span>
+
+                        <h3>End-to-end execution</h3>
+
+                        <p>
+                            From planning and coordination to production and
+                            delivery, we keep the moving parts working
+                            together.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="statement">
+            <div class="container">
+                <h2>
+                    The goal isn't just to fill a room. It's to make the room
+                    remember.
+                </h2>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Let's make something worth remembering.</h2>
+
+                <a href="contact.html" class="cta-button">
+                    Start a conversation
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-top">
+
+                <a href="../index.html" class="footer-logo">
+                    ARCANE
+                </a>
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+                        <span>Explore</span>
+                        <a href="../index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="media.html">Media</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <span>Connect</span>
+                        <a href="contact.html">Contact</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Arcane Events</span>
+                <span>Events. Experiences. Memories.</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById("menuOpen");
+        const menuClose = document.getElementById("menuClose");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const menuLinks = document.querySelectorAll(".menu-links a");
+
+        function openMenu() {
+            menuOverlay.classList.add("active");
+            menuOverlay.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+            menuOverlay.classList.remove("active");
+            menuOverlay.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+        }
+
+        menuOpen.addEventListener("click", openMenu);
+        menuClose.addEventListener("click", closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+    </script>
+
+</body>
+</html>

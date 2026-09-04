@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Media — Arcane Events</title>
+
+    <meta
+        name="description"
+        content="Explore Arcane Events through event photography, videos, stories and industry news."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --navy: #101b3a;
+            --cream: #f5f0e6;
+            --coral: #f26b5b;
+            --yellow: #f4c84b;
+            --white: #ffffff;
+            --black: #111111;
+            --border: rgba(16, 27, 58, 0.15);
+
+            --heading: "Space Grotesk", sans-serif;
+            --body: "DM Sans", sans-serif;
+
+            --container: 1240px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        img,
+        video {
+            display: block;
+            width: 100%;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 80px));
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            padding: 28px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--heading);
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .menu-button,
+        .menu-close {
+            width: 64px;
+            height: 64px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cream);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-button {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: transform 0.25s ease;
+        }
+
+        .menu-button:hover {
+            transform: rotate(8deg);
+        }
+
+        /* Menu */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: var(--coral);
+            padding: 28px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition:
+                transform 0.45s ease,
+                opacity 0.35s ease,
+                visibility 0.45s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-close {
+            font-size: 24px;
+        }
+
+        .menu-links {
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .menu-links a {
+            width: fit-content;
+            font-family: var(--heading);
+            font-size: clamp(42px, 8vw, 100px);
+            line-height: 0.95;
+            font-weight: 600;
+            letter-spacing: -4px;
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-links a:hover {
+            opacity: 0.55;
+        }
+
+        /* Hero */
+
+        .media-hero {
+            min-height: 85vh;
+            background: var(--yellow);
+            display: flex;
+            align-items: flex-end;
+            padding: 160px 0 90px;
+        }
+
+        .eyebrow {
+            margin-bottom: 28px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .media-hero h1 {
+            max-width: 1100px;
+            font-family: var(--heading);
+            font-size: clamp(65px, 11vw, 155px);
+            line-height: 0.84;
+            font-weight: 600;
+            letter-spacing: -8px;
+        }
+
+        /* Gallery */
+
+        .gallery {
+            padding: 130px 0;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 40px;
+            margin-bottom: 65px;
+        }
+
+        .section-heading h2 {
+            max-width: 750px;
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .section-heading p {
+            max-width: 330px;
+            color: rgba(16, 27, 58, 0.62);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+        }
+
+        .gallery-column {
+            display: grid;
+            gap: 24px;
+        }
+
+        .media-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+            background: var(--navy);
+        }
+
+        .media-card.large {
+            min-height: 780px;
+        }
+
+        .media-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #344762;
+            color: rgba(245, 240, 230, 0.7);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .media-placeholder.coral {
+            background: #c96a5d;
+        }
+
+        .media-placeholder.yellow {
+            background: #c6a33b;
+        }
+
+        .media-placeholder.dark {
+            background: #1e2947;
+        }
+
+        .media-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(16, 27, 58, 0.85),
+                transparent 55%
+            );
+        }
+
+        .media-info {
+            position: absolute;
+            left: 30px;
+            right: 30px;
+            bottom: 28px;
+            z-index: 2;
+            color: var(--cream);
+        }
+
+        .media-info span {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .media-info h3 {
+            font-family: var(--heading);
+            font-size: 28px;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        /* Video */
+
+        .video-section {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 130px 0;
+        }
+
+        .video-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 65px;
+        }
+
+        .video-header h2 {
+            max-width: 650px;
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .video-header p {
+            max-width: 400px;
+            align-self: end;
+            color: rgba(245, 240, 230, 0.6);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        .video-placeholder {
+            position: relative;
+            min-height: 650px;
+            background: #273653;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button {
+            width: 90px;
+            height: 90px;
+            border: 1px solid rgba(245, 240, 230, 0.8);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--cream);
+            cursor: pointer;
+            font-size: 22px;
+            padding-left: 5px;
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .play-button:hover {
+            background: var(--cream);
+            color: var(--navy);
+        }
+
+        /* Stories */
+
+        .stories {
+            padding: 130px 0;
+        }
+
+        .stories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .stories-header h2 {
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .stories-header p {
+            max-width: 340px;
+            color: rgba(16, 27, 58, 0.62);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .story-list {
+            border-top: 1px solid var(--border);
+        }
+
+        .story {
+            display: grid;
+            grid-template-columns: 130px 1fr 180px;
+            align-items: center;
+            gap: 45px;
+            padding: 35px 0;
+            border-bottom: 1px solid var(--border);
+            transition: padding 0.25s ease;
+        }
+
+        .story:hover {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .story-date {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(16, 27, 58, 0.5);
+        }
+
+        .story h3 {
+            font-family: var(--heading);
+            font-size: clamp(25px, 3vw, 38px);
+            line-height: 1;
+            letter-spacing: -1.5px;
+            font-weight: 600;
+        }
+
+        .story-type {
+            text-align: right;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(16, 27, 58, 0.5);
+        }
+
+        /* CTA */
+
+        .cta {
+            background: var(--coral);
+            padding: 140px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            max-width: 950px;
+            margin: 0 auto 45px;
+            font-family: var(--heading);
+            font-size: clamp(52px, 8vw, 105px);
+            line-height: 0.9;
+            letter-spacing: -6px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            padding: 0 32px;
+            background: var(--navy);
+            color: var(--cream);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        footer {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 70px 0 35px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            padding-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-family: var(--heading);
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .footer-column span {
+            margin-bottom: 10px;
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            font-size: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            opacity: 0.55;
+        }
+
+        .footer-bottom {
+            padding-top: 25px;
+            border-top: 1px solid rgba(245, 240, 230, 0.18);
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 12px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .container {
+                width: min(var(--container), calc(100% - 40px));
+            }
+
+            .section-heading,
+            .stories-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .media-card.large {
+                min-height: 550px;
+            }
+
+            .video-header {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .video-placeholder {
+                min-height: 500px;
+            }
+
+            .story {
+                grid-template-columns: 100px 1fr;
+                gap: 25px;
+            }
+
+            .story-type {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 20px 0;
+            }
+
+            .menu-button,
+            .menu-close {
+                width: 54px;
+                height: 54px;
+            }
+
+            .menu-overlay {
+                padding: 20px 0;
+            }
+
+            .menu-links {
+                height: calc(100vh - 100px);
+            }
+
+            .menu-links a {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+
+            .media-hero {
+                min-height: 75vh;
+                padding: 130px 0 55px;
+            }
+
+            .media-hero h1 {
+                font-size: clamp(60px, 18vw, 100px);
+                letter-spacing: -5px;
+            }
+
+            .gallery,
+            .video-section,
+            .stories,
+            .cta {
+                padding: 85px 0;
+            }
+
+            .section-heading h2,
+            .video-header h2,
+            .stories-header h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .media-card,
+            .media-card.large {
+                min-height: 380px;
+            }
+
+            .video-placeholder {
+                min-height: 350px;
+            }
+
+            .story {
+                display: block;
+                padding: 30px 0;
+            }
+
+            .story-date {
+                display: block;
+                margin-bottom: 18px;
+            }
+
+            .story h3 {
+                margin-bottom: 15px;
+            }
+
+            .cta h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="../index.html" class="logo">ARCANE</a>
+
+            <button
+                class="menu-button"
+                id="menuOpen"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                MENU
+            </button>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <div class="container">
+
+            <div class="menu-header">
+                <a href="../index.html" class="logo">ARCANE</a>
+
+                <button
+                    class="menu-close"
+                    id="menuClose"
+                    aria-label="Close navigation menu"
+                >
+                    ×
+                </button>
+            </div>
+
+            <nav class="menu-links" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="media.html">Media</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+        </div>
+    </div>
+
+    <main>
+
+        <section class="media-hero">
+            <div class="container">
+                <p class="eyebrow">Inside Arcane</p>
+
+                <h1>
+                    See the
+                    experience.
+                </h1>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="container">
+
+                <div class="section-heading">
+                    <h2>Moments worth keeping.</h2>
+
+                    <p>
+                        Explore selected moments from events, productions and
+                        experiences. Replace the placeholders with Arcane's
+                        photography as the media library grows.
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+
+                    <div class="media-card large">
+                        <div class="media-placeholder coral">
+                            Event photography
+                        </div>
+
+                        <div class="media-overlay"></div>
+
+                        <div class="media-info">
+                            <span>Featured</span>
+                            <h3>Event Name</h3>
+                        </div>
+                    </div>
+
+                    <div class="gallery-column">
+
+                        <div class="media-card">
+                            <div class="media-placeholder yellow">
+                                Event photography
+                            </div>
+
+                            <div class="media-overlay"></div>
+
+                            <div class="media-info">
+                                <span>Gallery</span>
+                                <h3>Event Name</h3>
+                            </div>
+                        </div>
+
+                        <div class="media-card">
+                            <div class="media-placeholder dark">
+                                Event photography
+                            </div>
+
+                            <div class="media-overlay"></div>
+
+                            <div class="media-info">
+                                <span>Gallery</span>
+                                <h3>Event Name</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="container">
+
+                <div class="video-header">
+                    <h2>
+                        Don't just see it. Feel it.
+                    </h2>
+
+                    <p>
+                        Video gives people a different way into the experience.
+                        Showcase event highlights, behind-the-scenes footage,
+                        interviews and productions here.
+                    </p>
+                </div>
+
+                <div class="video-placeholder">
+                    <button
+                        class="play-button"
+                        type="button"
+                        aria-label="Play featured video"
+                    >
+                        ▶
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="stories">
+            <div class="container">
+
+                <div class="stories-header">
+                    <h2>Stories & news.</h2>
+
+                    <p>
+                        A space for Arcane updates, event stories and
+                        conversations around the events industry in Zambia.
+                    </p>
+                </div>
+
+                <div class="story-list">
+
+                    <a href="#" class="story">
+                        <span class="story-date">
+                            Coming soon
+                        </span>
+
+                        <h3>
+                            The future of events in Zambia
+                        </h3>
+
+                        <span class="story-type">
+                            Industry
+                        </span>
+                    </a>
+
+                    <a href="#" class="story">
+                        <span class="story-date">
+                            Coming soon
+                        </span>
+
+                        <h3>
+                            Behind the scenes of an Arcane event
+                        </h3>
+
+                        <span class="story-type">
+                            Behind the scenes
+                        </span>
+                    </a>
+
+                    <a href="#" class="story">
+                        <span class="story-date">
+                            Coming soon
+                        </span>
+
+                        <h3>
+                            What makes an experience memorable?
+                        </h3>
+
+                        <span class="story-type">
+                            Insights
+                        </span>
+                    </a>
+
+                    <a href="#" class="story">
+                        <span class="story-date">
+                            Coming soon
+                        </span>
+
+                        <h3>
+                            Events, culture and the people behind them
+                        </h3>
+
+                        <span class="story-type">
+                            Culture
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+
+                <h2>
+                    Ready to create something worth capturing?
+                </h2>
+
+                <a href="contact.html" class="cta-button">
+                    Start a conversation
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-top">
+
+                <a href="../index.html" class="footer-logo">
+                    ARCANE
+                </a>
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+                        <span>Explore</span>
+
+                        <a href="../index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="media.html">Media</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <span>Connect</span>
+
+                        <a href="contact.html">Contact</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Arcane Events</span>
+                <span>Events. Experiences. Memories.</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById("menuOpen");
+        const menuClose = document.getElementById("menuClose");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const menuLinks = document.querySelectorAll(".menu-links a");
+
+        function openMenu() {
+            menuOverlay.classList.add("active");
+            menuOverlay.setAttribute("aria-hidden", "false");
+            menuOpen.setAttribute("aria-expanded", "true");
+            document.body.classList.add("menu-open");
+        }
+
+        function closeMenu() {
+            menuOverlay.classList.remove("active");
+            menuOverlay.setAttribute("aria-hidden", "true");
+            menuOpen.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+        }
+
+        menuOpen.addEventListener("click", openMenu);
+        menuClose.addEventListener("click", closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+    </script>
+
+</body>
+</html>

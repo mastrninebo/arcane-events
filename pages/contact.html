@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact — Arcane Events</title>
+
+    <meta
+        name="description"
+        content="Get in touch with Arcane Events to plan your next event or experience."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --navy: #101b3a;
+            --cream: #f5f0e6;
+            --coral: #f26b5b;
+            --yellow: #f4c84b;
+            --white: #ffffff;
+            --border: rgba(16, 27, 58, 0.16);
+
+            --heading: "Space Grotesk", sans-serif;
+            --body: "DM Sans", sans-serif;
+
+            --container: 1240px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 80px));
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            padding: 28px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--heading);
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .menu-button,
+        .menu-close {
+            width: 64px;
+            height: 64px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cream);
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-button {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: transform 0.25s ease;
+        }
+
+        .menu-button:hover {
+            transform: rotate(8deg);
+        }
+
+        /* Menu */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: var(--coral);
+            padding: 28px 0;
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+
+            transition:
+                transform 0.45s ease,
+                opacity 0.35s ease,
+                visibility 0.45s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-close {
+            font-size: 24px;
+        }
+
+        .menu-links {
+            height: calc(100vh - 120px);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .menu-links a {
+            width: fit-content;
+
+            font-family: var(--heading);
+            font-size: clamp(42px, 8vw, 100px);
+            line-height: 0.95;
+            font-weight: 600;
+            letter-spacing: -4px;
+
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-links a:hover {
+            opacity: 0.55;
+        }
+
+        /* Hero */
+
+        .contact-hero {
+            min-height: 78vh;
+            background: var(--navy);
+            color: var(--cream);
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 160px 0 90px;
+        }
+
+        .eyebrow {
+            margin-bottom: 28px;
+
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .contact-hero h1 {
+            max-width: 1100px;
+
+            font-family: var(--heading);
+            font-size: clamp(65px, 11vw, 155px);
+            line-height: 0.84;
+            font-weight: 600;
+            letter-spacing: -8px;
+        }
+
+        /* Contact section */
+
+        .contact-section {
+            padding: 130px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 100px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .contact-intro h2 {
+            max-width: 700px;
+
+            font-family: var(--heading);
+            font-size: clamp(42px, 5vw, 70px);
+            line-height: 0.96;
+            letter-spacing: -3px;
+            font-weight: 600;
+
+            margin-bottom: 30px;
+        }
+
+        .contact-intro > p {
+            max-width: 520px;
+
+            color: rgba(16, 27, 58, 0.68);
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        /* Form */
+
+        .booking-form {
+            border-top: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            padding: 25px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+            color: var(--navy);
+
+            font-size: 17px;
+        }
+
+        .form-group input,
+        .form-group select {
+            height: 42px;
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            padding-top: 8px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(16, 27, 58, 0.35);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+        }
+
+        .form-submit {
+            display: flex;
+            justify-content: flex-end;
+
+            padding-top: 30px;
+        }
+
+        .submit-button {
+            min-height: 60px;
+            padding: 0 35px;
+
+            border: 0;
+            border-radius: 100px;
+
+            background: var(--coral);
+            color: var(--navy);
+
+            cursor: pointer;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            background: var(--yellow);
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 20px;
+            padding: 18px 20px;
+
+            background: var(--yellow);
+
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-message.show {
+            display: block;
+        }
+
+        /* Process */
+
+        .process {
+            padding: 130px 0;
+            background: var(--yellow);
+        }
+
+        .process-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 50px;
+
+            margin-bottom: 70px;
+        }
+
+        .process-header h2 {
+            max-width: 700px;
+
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .process-header p {
+            max-width: 330px;
+
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .process-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            border-top: 1px solid rgba(16, 27, 58, 0.25);
+        }
+
+        .process-step {
+            padding: 40px 35px 20px 0;
+
+            border-right: 1px solid rgba(16, 27, 58, 0.25);
+        }
+
+        .process-step:not(:first-child) {
+            padding-left: 35px;
+        }
+
+        .process-step:last-child {
+            border-right: 0;
+        }
+
+        .step-number {
+            display: block;
+            margin-bottom: 65px;
+
+            font-family: var(--heading);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .process-step h3 {
+            margin-bottom: 18px;
+
+            font-family: var(--heading);
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .process-step p {
+            max-width: 330px;
+
+            color: rgba(16, 27, 58, 0.68);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Contact details */
+
+        .contact-details {
+            padding: 130px 0;
+            background: var(--coral);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .details-heading {
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .details-list {
+            display: grid;
+            gap: 35px;
+        }
+
+        .detail {
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(16, 27, 58, 0.2);
+        }
+
+        .detail span {
+            display: block;
+            margin-bottom: 10px;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .detail a,
+        .detail p {
+            font-family: var(--heading);
+            font-size: 25px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        /* CTA */
+
+        .cta {
+            padding: 140px 0;
+
+            background: var(--cream);
+
+            text-align: center;
+        }
+
+        .cta h2 {
+            max-width: 950px;
+            margin: 0 auto 45px;
+
+            font-family: var(--heading);
+            font-size: clamp(52px, 8vw, 105px);
+            line-height: 0.9;
+            letter-spacing: -6px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 60px;
+            padding: 0 32px;
+
+            background: var(--navy);
+            color: var(--cream);
+
+            border-radius: 100px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        footer {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 70px 0 35px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+
+            padding-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-family: var(--heading);
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .footer-column span {
+            margin-bottom: 10px;
+
+            color: rgba(245, 240, 230, 0.45);
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            font-size: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            opacity: 0.55;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid rgba(245, 240, 230, 0.18);
+
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 12px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+
+            .container {
+                width: min(var(--container), calc(100% - 40px));
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 55px;
+            }
+
+            .process-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .process-list {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step,
+            .process-step:not(:first-child) {
+                padding: 35px 0;
+
+                border-right: 0;
+                border-bottom: 1px solid rgba(16, 27, 58, 0.25);
+            }
+
+            .process-step:last-child {
+                border-bottom: 0;
+            }
+
+            .step-number {
+                margin-bottom: 40px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 20px 0;
+            }
+
+            .menu-button,
+            .menu-close {
+                width: 54px;
+                height: 54px;
+            }
+
+            .menu-overlay {
+                padding: 20px 0;
+            }
+
+            .menu-links {
+                height: calc(100vh - 100px);
+            }
+
+            .menu-links a {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+
+            .contact-hero {
+                min-height: 70vh;
+                padding: 130px 0 55px;
+            }
+
+            .contact-hero h1 {
+                font-size: clamp(60px, 18vw, 100px);
+                letter-spacing: -5px;
+            }
+
+            .contact-section,
+            .process,
+            .contact-details,
+            .cta {
+                padding: 85px 0;
+            }
+
+            .contact-intro h2 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-submit {
+                justify-content: stretch;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+
+            .process-header h2,
+            .details-heading,
+            .cta h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .detail a,
+            .detail p {
+                font-size: 21px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-inner">
+
+            <a href="../index.html" class="logo">
+                ARCANE
+            </a>
+
+            <button
+                class="menu-button"
+                id="menuOpen"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                MENU
+            </button>
+
+        </div>
+    </header>
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    >
+        <div class="container">
+
+            <div class="menu-header">
+
+                <a href="../index.html" class="logo">
+                    ARCANE
+                </a>
+
+                <button
+                    class="menu-close"
+                    id="menuClose"
+                    aria-label="Close navigation menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <nav class="menu-links" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="media.html">Media</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+        </div>
+    </div>
+
+    <main>
+
+        <section class="contact-hero">
+            <div class="container">
+
+                <p class="eyebrow">
+                    Let's work together
+                </p>
+
+                <h1>
+                    Tell us what
+                    you're imagining.
+                </h1>
+
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+
+                <div class="contact-grid">
+
+                    <div class="contact-intro">
+
+                        <p class="section-label">
+                            Book Arcane
+                        </p>
+
+                        <h2>
+                            Start with the idea. We'll take it from there.
+                        </h2>
+
+                        <p>
+                            Whether you're planning a corporate gathering,
+                            celebration, launch, private event or something
+                            completely different, tell us what you're working
+                            on and we'll get back to you.
+                        </p>
+
+                    </div>
+
+                    <form
+                        class="booking-form"
+                        id="bookingForm"
+                    >
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="name">
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Your name"
+                                    autocomplete="name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">
+                                    Company
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="company"
+                                    name="company"
+                                    placeholder="Company or organisation"
+                                    autocomplete="organization"
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="+260..."
+                                    autocomplete="tel"
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="eventType">
+                                    Event type
+                                </label>
+
+                                <select
+                                    id="eventType"
+                                    name="eventType"
+                                    required
+                                >
+                                    <option value="">
+                                        Select event type
+                                    </option>
+
+                                    <option value="corporate">
+                                        Corporate event
+                                    </option>
+
+                                    <option value="social">
+                                        Social event
+                                    </option>
+
+                                    <option value="launch">
+                                        Launch
+                                    </option>
+
+                                    <option value="conference">
+                                        Conference
+                                    </option>
+
+                                    <option value="private">
+                                        Private event
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="eventDate">
+                                    Event date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="eventDate"
+                                    name="eventDate"
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Tell us about it
+                            </label>
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Tell us about your event, what you need and anything else we should know."
+                                required
+                            ></textarea>
+
+                        </div>
+
+                        <div class="form-submit">
+
+                            <button
+                                type="submit"
+                                class="submit-button"
+                            >
+                                Send enquiry
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="form-message"
+                            id="formMessage"
+                            role="status"
+                        >
+                            Thanks for reaching out. Your enquiry has been
+                            prepared successfully. Connect the form to the
+                            Arcane backend or email service before going live.
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="process">
+
+            <div class="container">
+
+                <div class="process-header">
+
+                    <h2>
+                        What happens next?
+                    </h2>
+
+                    <p>
+                        A simple process designed to move from an initial idea
+                        to a clear event plan.
+                    </p>
+
+                </div>
+
+                <div class="process-list">
+
+                    <article class="process-step">
+
+                        <span class="step-number">
+                            01
+                        </span>
+
+                        <h3>
+                            We listen
+                        </h3>
+
+                        <p>
+                            Tell us about your event, your audience, your
+                            objectives and what you want the experience to feel
+                            like.
+                        </p>
+
+                    </article>
+
+                    <article class="process-step">
+
+                        <span class="step-number">
+                            02
+                        </span>
+
+                        <h3>
+                            We plan
+                        </h3>
+
+                        <p>
+                            We develop the approach, identify the requirements
+                            and work through the details with you.
+                        </p>
+
+                    </article>
+
+                    <article class="process-step">
+
+                        <span class="step-number">
+                            03
+                        </span>
+
+                        <h3>
+                            We deliver
+                        </h3>
+
+                        <p>
+                            Once everything is ready, we coordinate the moving
+                            parts and bring the experience to life.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="contact-details">
+
+            <div class="container">
+
+                <div class="details-grid">
+
+                    <h2 class="details-heading">
+                        Come say hello.
+                    </h2>
+
+                    <div class="details-list">
+
+                        <div class="detail">
+                            <span>
+                                Email
+                            </span>
+
+                            <a href="mailto:hello@arcaneevents.com">
+                                hello@arcaneevents.com
+                            </a>
+                        </div>
+
+                        <div class="detail">
+                            <span>
+                                Phone
+                            </span>
+
+                            <a href="tel:+260000000000">
+                                +260 000 000 000
+                            </a>
+                        </div>
+
+                        <div class="detail">
+                            <span>
+                                Location
+                            </span>
+
+                            <p>
+                                Lusaka, Zambia
+                            </p>
+                        </div>
+
+                        <div class="detail">
+                            <span>
+                                Social
+                            </span>
+
+                            <a href="#">
+                                Instagram
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="cta">
+
+            <div class="container">
+
+                <h2>
+                    What will we make loud?
+                </h2>
+
+                <a
+                    href="#bookingForm"
+                    class="cta-button"
+                >
+                    Start your enquiry
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-top">
+
+                <a
+                    href="../index.html"
+                    class="footer-logo"
+                >
+                    ARCANE
+                </a>
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+
+                        <span>
+                            Explore
+                        </span>
+
+                        <a href="../index.html">
+                            Home
+                        </a>
+
+                        <a href="about.html">
+                            About
+                        </a>
+
+                        <a href="services.html">
+                            Services
+                        </a>
+
+                        <a href="media.html">
+                            Media
+                        </a>
+
+                    </div>
+
+                    <div class="footer-column">
+
+                        <span>
+                            Connect
+                        </span>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="#">
+                            Instagram
+                        </a>
+
+                        <a href="#">
+                            Facebook
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 Arcane Events
+                </span>
+
+                <span>
+                    Events. Experiences. Memories.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById("menuOpen");
+        const menuClose = document.getElementById("menuClose");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const menuLinks = document.querySelectorAll(".menu-links a");
+
+        function openMenu() {
+            menuOverlay.classList.add("active");
+            menuOverlay.setAttribute("aria-hidden", "false");
+            menuOpen.setAttribute("aria-expanded", "true");
+            document.body.classList.add("menu-open");
+        }
+
+        function closeMenu() {
+            menuOverlay.classList.remove("active");
+            menuOverlay.setAttribute("aria-hidden", "true");
+            menuOpen.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+        }
+
+        menuOpen.addEventListener("click", openMenu);
+        menuClose.addEventListener("click", closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        const bookingForm = document.getElementById("bookingForm");
+        const formMessage = document.getElementById("formMessage");
+
+        bookingForm.addEventListener("submit", event => {
+            event.preventDefault();
+
+            if (!bookingForm.checkValidity()) {
+                bookingForm.reportValidity();
+                return;
+            }
+
+            formMessage.classList.add("show");
+
+            formMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+    </script>
+
+</body>
+</html>

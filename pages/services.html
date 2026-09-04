@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Services — Arcane Events</title>
+
+    <meta
+        name="description"
+        content="Explore the event planning, production and experience services offered by Arcane Events."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --navy: #101b3a;
+            --cream: #f5f0e6;
+            --coral: #f26b5b;
+            --yellow: #f4c84b;
+            --white: #ffffff;
+            --black: #111111;
+            --border: rgba(16, 27, 58, 0.15);
+
+            --heading: "Space Grotesk", sans-serif;
+            --body: "DM Sans", sans-serif;
+
+            --container: 1240px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 80px));
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            padding: 28px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--heading);
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .menu-button,
+        .menu-close {
+            width: 64px;
+            height: 64px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cream);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-button {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: transform 0.25s ease;
+        }
+
+        .menu-button:hover {
+            transform: rotate(8deg);
+        }
+
+        /* Menu */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: var(--coral);
+            padding: 28px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition:
+                transform 0.45s ease,
+                opacity 0.35s ease,
+                visibility 0.45s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-close {
+            font-size: 24px;
+        }
+
+        .menu-links {
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .menu-links a {
+            width: fit-content;
+            font-family: var(--heading);
+            font-size: clamp(42px, 8vw, 100px);
+            line-height: 0.95;
+            font-weight: 600;
+            letter-spacing: -4px;
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-links a:hover {
+            opacity: 0.55;
+        }
+
+        /* Hero */
+
+        .services-hero {
+            min-height: 88vh;
+            background: var(--coral);
+            display: flex;
+            align-items: flex-end;
+            padding: 160px 0 90px;
+        }
+
+        .eyebrow {
+            margin-bottom: 28px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .services-hero h1 {
+            max-width: 1150px;
+            font-family: var(--heading);
+            font-size: clamp(65px, 11vw, 155px);
+            line-height: 0.84;
+            font-weight: 600;
+            letter-spacing: -8px;
+        }
+
+        /* Services introduction */
+
+        .services-intro {
+            padding: 130px 0 90px;
+        }
+
+        .services-intro-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 100px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .services-intro h2 {
+            max-width: 850px;
+            font-family: var(--heading);
+            font-size: clamp(42px, 5vw, 70px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            font-weight: 600;
+        }
+
+        /* Service list */
+
+        .service-list {
+            padding: 40px 0 130px;
+        }
+
+        .service {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            gap: 50px;
+            padding: 45px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .service:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-number {
+            font-family: var(--heading);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .service h3 {
+            font-family: var(--heading);
+            font-size: clamp(28px, 3vw, 44px);
+            line-height: 1;
+            letter-spacing: -2px;
+            font-weight: 600;
+        }
+
+        .service p {
+            max-width: 450px;
+            color: rgba(16, 27, 58, 0.68);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        /* Feature banner */
+
+        .feature {
+            background: var(--yellow);
+            padding: 130px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: end;
+        }
+
+        .feature h2 {
+            max-width: 650px;
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 95px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .feature-copy {
+            max-width: 450px;
+        }
+
+        .feature-copy p {
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .outline-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 28px;
+            border: 1px solid var(--navy);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .outline-button:hover {
+            background: var(--navy);
+            color: var(--cream);
+        }
+
+        /* Past events */
+
+        .past-events {
+            padding: 130px 0;
+        }
+
+        .past-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 40px;
+            margin-bottom: 65px;
+        }
+
+        .past-header h2 {
+            max-width: 700px;
+            font-family: var(--heading);
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        .past-header p {
+            max-width: 320px;
+            color: rgba(16, 27, 58, 0.6);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .event-card {
+            min-height: 480px;
+            position: relative;
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .event-card-image {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(16, 27, 58, 0.9),
+                    rgba(16, 27, 58, 0.05)
+                );
+        }
+
+        .event-card-image.placeholder-one {
+            background-color: #c96a5d;
+        }
+
+        .event-card-image.placeholder-two {
+            background-color: #3d526f;
+        }
+
+        .event-card-image.placeholder-three {
+            background-color: #d3a83d;
+        }
+
+        .event-card-image.placeholder-four {
+            background-color: #8a6471;
+        }
+
+        .event-info {
+            position: absolute;
+            z-index: 2;
+            left: 35px;
+            right: 35px;
+            bottom: 30px;
+            color: var(--cream);
+        }
+
+        .event-type {
+            display: inline-block;
+            margin-bottom: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .event-info h3 {
+            font-family: var(--heading);
+            font-size: 34px;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 140px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            max-width: 900px;
+            margin: 0 auto 45px;
+            font-family: var(--heading);
+            font-size: clamp(52px, 8vw, 105px);
+            line-height: 0.9;
+            letter-spacing: -6px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            padding: 0 32px;
+            background: var(--coral);
+            color: var(--navy);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        footer {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 70px 0 35px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            padding-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-family: var(--heading);
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .footer-column span {
+            margin-bottom: 10px;
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            font-size: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            opacity: 0.55;
+        }
+
+        .footer-bottom {
+            padding-top: 25px;
+            border-top: 1px solid rgba(245, 240, 230, 0.18);
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            color: rgba(245, 240, 230, 0.45);
+            font-size: 12px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .container {
+                width: min(var(--container), calc(100% - 40px));
+            }
+
+            .services-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .service {
+                grid-template-columns: 70px 1fr;
+                gap: 25px;
+            }
+
+            .service p {
+                grid-column: 2;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .past-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 20px 0;
+            }
+
+            .menu-button,
+            .menu-close {
+                width: 54px;
+                height: 54px;
+            }
+
+            .menu-overlay {
+                padding: 20px 0;
+            }
+
+            .menu-links {
+                height: calc(100vh - 100px);
+            }
+
+            .menu-links a {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+
+            .services-hero {
+                min-height: 75vh;
+                padding: 130px 0 55px;
+            }
+
+            .services-hero h1 {
+                font-size: clamp(60px, 18vw, 100px);
+                letter-spacing: -5px;
+            }
+
+            .services-intro,
+            .past-events,
+            .feature,
+            .cta {
+                padding: 85px 0;
+            }
+
+            .services-intro h2 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .service {
+                display: block;
+                padding: 35px 0;
+            }
+
+            .service-number {
+                display: block;
+                margin-bottom: 30px;
+            }
+
+            .service h3 {
+                margin-bottom: 20px;
+                font-size: 34px;
+            }
+
+            .feature h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .feature-copy p {
+                font-size: 16px;
+            }
+
+            .past-header h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .event-card {
+                min-height: 380px;
+            }
+
+            .cta h2 {
+                font-size: 55px;
+                letter-spacing: -3px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="../index.html" class="logo">ARCANE</a>
+
+            <button
+                class="menu-button"
+                id="menuOpen"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                MENU
+            </button>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <div class="container">
+
+            <div class="menu-header">
+                <a href="../index.html" class="logo">ARCANE</a>
+
+                <button
+                    class="menu-close"
+                    id="menuClose"
+                    aria-label="Close navigation menu"
+                >
+                    ×
+                </button>
+            </div>
+
+            <nav class="menu-links" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="media.html">Media</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+        </div>
+    </div>
+
+    <main>
+
+        <section class="services-hero">
+            <div class="container">
+                <p class="eyebrow">What we do</p>
+
+                <h1>
+                    Events with
+                    intention.
+                </h1>
+            </div>
+        </section>
+
+        <section class="services-intro">
+            <div class="container">
+
+                <div class="services-intro-grid">
+
+                    <div>
+                        <p class="section-label">Our services</p>
+                    </div>
+
+                    <div>
+                        <h2>
+                            From the first idea to the final moment, we bring
+                            the pieces together.
+                        </h2>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="service-list">
+            <div class="container">
+
+                <article class="service">
+                    <span class="service-number">01</span>
+
+                    <h3>
+                        Event Planning
+                    </h3>
+
+                    <p>
+                        We help turn an idea into a clear, organised event
+                        plan. From concepts and timelines to coordination and
+                        logistics, every stage is considered before the doors
+                        open.
+                    </p>
+                </article>
+
+                <article class="service">
+                    <span class="service-number">02</span>
+
+                    <h3>
+                        Event Production
+                    </h3>
+
+                    <p>
+                        We coordinate the production elements that bring an
+                        event to life, helping create an environment that feels
+                        cohesive, engaging and memorable.
+                    </p>
+                </article>
+
+                <article class="service">
+                    <span class="service-number">03</span>
+
+                    <h3>
+                        Creative Direction
+                    </h3>
+
+                    <p>
+                        From the visual identity to the atmosphere of the
+                        experience, we develop creative ideas that give every
+                        event its own character.
+                    </p>
+                </article>
+
+                <article class="service">
+                    <span class="service-number">04</span>
+
+                    <h3>
+                        Corporate Events
+                    </h3>
+
+                    <p>
+                        Professional experiences designed around your
+                        organisation, whether it's a launch, conference,
+                        celebration, networking event or private gathering.
+                    </p>
+                </article>
+
+                <article class="service">
+                    <span class="service-number">05</span>
+
+                    <h3>
+                        Social Events
+                    </h3>
+
+                    <p>
+                        Celebrations that are planned around the people,
+                        atmosphere and moments that matter, with every detail
+                        designed to create an enjoyable experience.
+                    </p>
+                </article>
+
+                <article class="service">
+                    <span class="service-number">06</span>
+
+                    <h3>
+                        Event Coordination
+                    </h3>
+
+                    <p>
+                        On-the-ground coordination keeps suppliers, schedules,
+                        guests and production moving together so you can focus
+                        on experiencing the event itself.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="feature">
+            <div class="container">
+
+                <div class="feature-grid">
+
+                    <h2>
+                        You bring the idea. We build the experience.
+                    </h2>
+
+                    <div class="feature-copy">
+                        <p>
+                            Every event is different. That's why we work from
+                            the brief, understand the audience and build an
+                            approach around what the occasion actually needs.
+                        </p>
+
+                        <a href="contact.html" class="outline-button">
+                            Discuss your event
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="past-events">
+            <div class="container">
+
+                <div class="past-header">
+                    <h2>Past events.</h2>
+
+                    <p>
+                        A selection of experiences delivered by Arcane Events.
+                        Replace these placeholders with real event photography,
+                        names and details.
+                    </p>
+                </div>
+
+                <div class="event-grid">
+
+                    <article class="event-card">
+                        <div class="event-card-image placeholder-one"></div>
+
+                        <div class="event-info">
+                            <span class="event-type">
+                                Event type
+                            </span>
+
+                            <h3>
+                                Event Name
+                            </h3>
+                        </div>
+                    </article>
+
+                    <article class="event-card">
+                        <div class="event-card-image placeholder-two"></div>
+
+                        <div class="event-info">
+                            <span class="event-type">
+                                Event type
+                            </span>
+
+                            <h3>
+                                Event Name
+                            </h3>
+                        </div>
+                    </article>
+
+                    <article class="event-card">
+                        <div class="event-card-image placeholder-three"></div>
+
+                        <div class="event-info">
+                            <span class="event-type">
+                                Event type
+                            </span>
+
+                            <h3>
+                                Event Name
+                            </h3>
+                        </div>
+                    </article>
+
+                    <article class="event-card">
+                        <div class="event-card-image placeholder-four"></div>
+
+                        <div class="event-info">
+                            <span class="event-type">
+                                Event type
+                            </span>
+
+                            <h3>
+                                Event Name
+                            </h3>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+
+                <h2>
+                    Have an event in mind?
+                </h2>
+
+                <a href="contact.html" class="cta-button">
+                    Start a conversation
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-top">
+
+                <a href="../index.html" class="footer-logo">
+                    ARCANE
+                </a>
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+                        <span>Explore</span>
+
+                        <a href="../index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="media.html">Media</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <span>Connect</span>
+
+                        <a href="contact.html">Contact</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Arcane Events</span>
+                <span>Events. Experiences. Memories.</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById("menuOpen");
+        const menuClose = document.getElementById("menuClose");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const menuLinks = document.querySelectorAll(".menu-links a");
+
+        function openMenu() {
+            menuOverlay.classList.add("active");
+            menuOverlay.setAttribute("aria-hidden", "false");
+            menuOpen.setAttribute("aria-expanded", "true");
+            document.body.classList.add("menu-open");
+        }
+
+        function closeMenu() {
+            menuOverlay.classList.remove("active");
+            menuOverlay.setAttribute("aria-hidden", "true");
+            menuOpen.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+        }
+
+        menuOpen.addEventListener("click", openMenu);
+        menuClose.addEventListener("click", closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+    </script>
+
+</body>
+</html>
