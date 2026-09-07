@@ -345,13 +345,14 @@
             letter-spacing: -.09em;
         }
 
+        /* Prominent Hero Title */
         .hero-title {
-            max-width: 900px;
+            max-width: 100%;
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(5rem, 14vw, 13rem);
+            font-size: clamp(6rem, 18vw, 16rem); /* Increased font size significantly */
             font-weight: 700;
-            line-height: .72;
-            letter-spacing: -.1em;
+            line-height: 0.82; /* Tighter line height for stacking */
+            letter-spacing: -.08em;
             text-transform: lowercase;
         }
 
@@ -836,8 +837,8 @@
             }
 
             .hero-title {
-                font-size: 21vw;
-                line-height: .74;
+                font-size: 22vw; /* Adjusted for mobile prominence */
+                line-height: .85;
             }
 
             .hero-bottom {
@@ -958,7 +959,7 @@
             }
 
             .hero-title {
-                font-size: 22vw;
+                font-size: 24vw; /* Slightly larger on smallest screens */
             }
 
             .hero-description {
