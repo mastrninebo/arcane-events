@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Arcane Events — creating unforgettable events, experiences and moments in Zambia.">
-    <title>Arcane Events</title>
+
+    <meta
+        name="description"
+        content="Arcane Events — artist management, event making and brand experiences in Zambia."
+    >
+
+    <title>Arcane Events | Artists & Experiences</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
 
     <style>
-        *, *::before, *::after {
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        :root {
+            --navy: #292544;
+            --navy-deep: #17152b;
+            --cream: #f4eddd;
+            --coral: #ed6b4d;
+            --yellow: #e7bb45;
+            --muted: #aaa5b4;
+            --container: min(1400px, calc(100% - 70px));
         }
 
         html {
@@ -23,15 +44,18 @@
 
         body {
             font-family: "DM Sans", sans-serif;
-            background: #292544;
-            color: #f4eddd;
+            background: var(--navy);
+            color: var(--cream);
             overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         img {
             display: block;
-            width: 100%;
-            height: auto;
+            max-width: 100%;
         }
 
         a {
@@ -39,7 +63,10 @@
             text-decoration: none;
         }
 
-        button, input, textarea, select {
+        button,
+        input,
+        textarea,
+        select {
             font: inherit;
         }
 
@@ -48,34 +75,22 @@
             cursor: pointer;
         }
 
-        :root {
-            --navy: #292544;
-            --navy-dark: #201d38;
-            --cream: #f4eddd;
-            --coral: #ed6b4d;
-            --yellow: #e7bb45;
-            --white: #ffffff;
-            --muted: #aaa5b4;
-            --container: min(1400px, calc(100% - 48px));
-            --radius: 28px;
-        }
-
         .container {
             width: var(--container);
             margin-inline: auto;
         }
 
         .section {
-            padding: 120px 0;
+            padding: 130px 0;
         }
 
         .eyebrow {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: .12em;
+            letter-spacing: .16em;
             text-transform: uppercase;
         }
 
@@ -83,24 +98,22 @@
             content: "";
             width: 8px;
             height: 8px;
-            background: currentColor;
+            flex-shrink: 0;
             border-radius: 50%;
+            background: currentColor;
         }
 
         .section-title {
-            margin-top: 25px;
+            margin-top: 28px;
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(3rem, 7vw, 8rem);
-            line-height: .86;
-            letter-spacing: -.065em;
+            font-size: clamp(4rem, 8vw, 9rem);
+            font-weight: 700;
+            line-height: .82;
+            letter-spacing: -.085em;
             text-transform: uppercase;
         }
 
-        .body-copy {
-            max-width: 620px;
-            font-size: 18px;
-            line-height: 1.55;
-        }
+        /* Navigation */
 
         .navbar {
             position: absolute;
@@ -108,57 +121,77 @@
             left: 0;
             width: 100%;
             z-index: 100;
-            padding: 24px 0;
+            padding: 32px 0;
         }
 
         .nav-inner {
-            width: var(--container);
-            margin-inline: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .logo {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .brand-name {
             font-family: "Space Grotesk", sans-serif;
-            font-size: 28px;
+            font-size: 34px;
             font-weight: 700;
-            letter-spacing: -.06em;
+            line-height: 1;
+            letter-spacing: -.07em;
         }
 
         .menu-button {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 13px;
             background: transparent;
             color: var(--cream);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
+            letter-spacing: .12em;
             text-transform: uppercase;
-            letter-spacing: .08em;
         }
 
         .menu-icon {
-            width: 42px;
-            height: 42px;
+            width: 58px;
+            height: 58px;
             display: grid;
             place-items: center;
-            border: 1px solid rgba(244,237,221,.45);
+            border: 1px solid rgba(244, 237, 221, .35);
             border-radius: 50%;
+            transition: background .3s ease, color .3s ease;
         }
 
-        .menu-icon span,
-        .menu-icon span::after {
+        .menu-button:hover .menu-icon {
+            background: var(--cream);
+            color: var(--navy);
+        }
+
+        .menu-lines {
+            width: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .menu-lines span {
             display: block;
-            width: 15px;
-            height: 1px;
+            width: 100%;
+            height: 1.5px;
             background: currentColor;
         }
 
-        .menu-icon span::after {
-            content: "";
-            transform: translateY(5px);
-        }
+        /* Menu overlay */
 
         .menu-overlay {
             position: fixed;
@@ -167,10 +200,14 @@
             display: flex;
             align-items: center;
             background: var(--coral);
+            color: var(--navy);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-100%);
-            transition: opacity .45s ease, visibility .45s ease, transform .6s cubic-bezier(.76,0,.24,1);
+            transition:
+                opacity .4s ease,
+                visibility .4s ease,
+                transform .65s cubic-bezier(.76, 0, .24, 1);
         }
 
         .menu-overlay.active {
@@ -179,21 +216,23 @@
             transform: translateY(0);
         }
 
-        .menu-overlay-inner {
+        .menu-inner {
             width: var(--container);
             margin-inline: auto;
         }
 
         .close-menu {
             position: absolute;
-            top: 24px;
-            right: max(24px, calc((100vw - 1400px) / 2));
-            width: 42px;
-            height: 42px;
+            top: 32px;
+            right: max(35px, calc((100vw - 1400px) / 2));
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
             border-radius: 50%;
             background: var(--navy);
             color: var(--cream);
-            font-size: 24px;
+            font-size: 30px;
         }
 
         .menu-links {
@@ -207,78 +246,157 @@
         .menu-links a {
             display: block;
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(3.5rem, 10vw, 9rem);
+            font-size: clamp(4rem, 10vw, 9rem);
             font-weight: 700;
-            line-height: .85;
-            letter-spacing: -.07em;
+            line-height: .82;
+            letter-spacing: -.075em;
             text-transform: uppercase;
             transition: transform .3s ease;
         }
 
         .menu-links a:hover {
-            transform: translateX(15px);
+            transform: translateX(18px);
         }
 
+        /* Hero */
+
         .hero {
+            position: relative;
             min-height: 100svh;
-            padding: 150px 0 60px;
             display: flex;
             align-items: flex-end;
-            background: var(--navy);
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(29, 26, 58, .96) 0%,
+                    rgba(41, 37, 68, .82) 45%,
+                    rgba(41, 37, 68, .45) 100%
+                ),
+                linear-gradient(
+                    180deg,
+                    rgba(19, 17, 38, .4) 0%,
+                    rgba(19, 17, 38, .1) 45%,
+                    rgba(19, 17, 38, .75) 100%
+                ),
+                url("assets/images/hero.jpg") center center / cover no-repeat;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(
+                    circle at 85% 40%,
+                    rgba(237, 107, 77, .18),
+                    transparent 35%
+                );
+            mix-blend-mode: screen;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             width: 100%;
+            padding: 180px 0 65px;
         }
 
         .hero-eyebrow {
-            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 55px;
+            color: var(--coral);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow::before {
+            content: "";
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--coral);
+        }
+
+        .hero-brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 48px;
+        }
+
+        .hero-brand img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .hero-brand-name {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 700;
+            line-height: .8;
+            letter-spacing: -.09em;
         }
 
         .hero-title {
-            max-width: 1200px;
+            max-width: 900px;
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(4.5rem, 13vw, 13rem);
+            font-size: clamp(5rem, 14vw, 13rem);
             font-weight: 700;
-            line-height: .76;
-            letter-spacing: -.085em;
-            text-transform: uppercase;
+            line-height: .72;
+            letter-spacing: -.1em;
+            text-transform: lowercase;
         }
 
         .hero-title span {
             display: block;
         }
 
+        .hero-title .accent {
+            color: var(--coral);
+        }
+
         .hero-bottom {
-            margin-top: 60px;
             display: flex;
-            justify-content: space-between;
             align-items: flex-end;
-            gap: 40px;
+            justify-content: space-between;
+            gap: 50px;
+            margin-top: 75px;
         }
 
         .hero-description {
-            max-width: 470px;
-            font-size: clamp(16px, 1.5vw, 21px);
-            line-height: 1.4;
+            max-width: 610px;
+            color: rgba(244, 237, 221, .78);
+            font-size: clamp(18px, 2vw, 25px);
+            line-height: 1.65;
         }
 
-        .circle-arrow {
-            width: 90px;
-            height: 90px;
-            flex-shrink: 0;
+        .hero-arrow {
+            width: 82px;
+            height: 82px;
             display: grid;
             place-items: center;
-            border: 1px solid rgba(244,237,221,.5);
+            flex-shrink: 0;
+            border: 1px solid rgba(244, 237, 221, .4);
             border-radius: 50%;
             font-size: 28px;
-            transition: background .3s, color .3s;
+            transition: background .3s ease, color .3s ease, transform .3s ease;
         }
 
-        .circle-arrow:hover {
+        .hero-arrow:hover {
             background: var(--cream);
             color: var(--navy);
+            transform: translateY(-5px);
         }
+
+        /* Social proof */
 
         .social-proof {
             background: var(--cream);
@@ -286,28 +404,31 @@
         }
 
         .logos {
-            margin-top: 70px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            border-top: 1px solid rgba(41,37,68,.25);
-            border-bottom: 1px solid rgba(41,37,68,.25);
+            margin-top: 80px;
+            border-top: 1px solid rgba(41, 37, 68, .25);
+            border-bottom: 1px solid rgba(41, 37, 68, .25);
         }
 
         .logo-placeholder {
-            min-height: 130px;
+            min-height: 150px;
             display: grid;
             place-items: center;
-            border-right: 1px solid rgba(41,37,68,.25);
+            padding: 20px;
+            border-right: 1px solid rgba(41, 37, 68, .25);
             font-family: "Space Grotesk", sans-serif;
             font-size: 20px;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
-            opacity: .55;
+            opacity: .5;
         }
 
         .logo-placeholder:last-child {
             border-right: 0;
         }
+
+        /* Upcoming */
 
         .upcoming {
             background: var(--coral);
@@ -315,46 +436,46 @@
         }
 
         .event-list {
-            margin-top: 70px;
+            margin-top: 80px;
         }
 
         .event-row {
-            padding: 30px 0;
             display: grid;
             grid-template-columns: 130px 1fr auto;
             align-items: center;
             gap: 40px;
-            border-top: 1px solid rgba(41,37,68,.35);
+            padding: 32px 0;
+            border-top: 1px solid rgba(41, 37, 68, .3);
         }
 
         .event-date {
             font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 700;
-            line-height: .9;
+            line-height: .85;
             text-transform: uppercase;
         }
 
         .event-name {
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(24px, 3vw, 42px);
-            font-weight: 600;
-            letter-spacing: -.04em;
+            font-size: clamp(25px, 4vw, 48px);
+            line-height: 1;
+            letter-spacing: -.05em;
         }
 
         .event-location {
-            margin-top: 5px;
-            opacity: .7;
+            margin-top: 8px;
+            opacity: .65;
         }
 
         .event-link {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             display: grid;
             place-items: center;
-            border: 1px solid rgba(41,37,68,.5);
+            border: 1px solid rgba(41, 37, 68, .5);
             border-radius: 50%;
-            transition: background .3s;
+            transition: background .3s ease, color .3s ease;
         }
 
         .event-link:hover {
@@ -362,23 +483,26 @@
             color: var(--cream);
         }
 
+        /* About */
+
         .about-preview {
             background: var(--cream);
             color: var(--navy);
         }
 
         .about-grid {
-            margin-top: 70px;
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 80px;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 100px;
+            margin-top: 80px;
         }
 
         .about-large {
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(2.5rem, 5vw, 6rem);
-            line-height: .9;
-            letter-spacing: -.06em;
+            font-size: clamp(3rem, 6vw, 7rem);
+            font-weight: 600;
+            line-height: .88;
+            letter-spacing: -.075em;
         }
 
         .about-side {
@@ -386,23 +510,29 @@
         }
 
         .about-side p {
-            max-width: 550px;
+            max-width: 560px;
             font-size: 20px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .text-link {
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            margin-top: 35px;
+            margin-top: 40px;
             padding-bottom: 8px;
             border-bottom: 1px solid currentColor;
+            font-size: 12px;
             font-weight: 700;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: .08em;
         }
+
+        .text-link span {
+            font-size: 18px;
+        }
+
+        /* Services */
 
         .services {
             background: var(--navy);
@@ -413,33 +543,37 @@
         }
 
         .service {
-            padding: 30px 0;
             display: grid;
             grid-template-columns: 80px 1fr;
             gap: 30px;
-            border-top: 1px solid rgba(244,237,221,.25);
+            padding: 35px 0;
+            border-top: 1px solid rgba(244, 237, 221, .22);
         }
 
         .service-number {
-            font-size: 14px;
-            opacity: .5;
+            padding-top: 5px;
+            color: var(--muted);
+            font-size: 13px;
         }
 
         .service-title {
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(2rem, 5vw, 5.5rem);
-            line-height: .9;
-            letter-spacing: -.06em;
+            font-size: clamp(2.5rem, 5vw, 6rem);
+            font-weight: 600;
+            line-height: .88;
+            letter-spacing: -.065em;
             text-transform: uppercase;
         }
 
         .service-description {
-            max-width: 550px;
-            margin-top: 18px;
-            font-size: 17px;
-            line-height: 1.5;
+            max-width: 600px;
+            margin-top: 20px;
             color: var(--muted);
+            font-size: 17px;
+            line-height: 1.55;
         }
+
+        /* Past events */
 
         .past-events {
             background: var(--cream);
@@ -447,26 +581,32 @@
         }
 
         .event-grid {
-            margin-top: 70px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
+            margin-top: 80px;
         }
 
         .event-card {
             overflow: hidden;
-            border-radius: var(--radius);
+            border-radius: 25px;
             background: var(--navy);
             color: var(--cream);
         }
 
         .event-image {
             aspect-ratio: 4 / 3;
-            background: linear-gradient(135deg, #4d476f, #24203e);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(237, 107, 77, .3),
+                    rgba(32, 29, 56, .8)
+                ),
+                url("assets/images/event-placeholder.jpg") center / cover;
         }
 
         .event-card-content {
-            padding: 25px;
+            padding: 27px;
         }
 
         .event-card-content h3 {
@@ -476,9 +616,11 @@
         }
 
         .event-card-content p {
-            margin-top: 7px;
-            opacity: .65;
+            margin-top: 8px;
+            color: var(--muted);
         }
+
+        /* Media */
 
         .media {
             background: var(--yellow);
@@ -486,25 +628,40 @@
         }
 
         .media-grid {
-            margin-top: 70px;
             display: grid;
             grid-template-columns: 1.5fr 1fr;
             gap: 25px;
+            margin-top: 80px;
         }
 
         .media-card {
             overflow: hidden;
-            border-radius: var(--radius);
+            border-radius: 25px;
             background: var(--navy);
             color: var(--cream);
         }
 
         .media-visual {
             aspect-ratio: 16 / 10;
-            background: linear-gradient(135deg, #484263, #211e38);
             display: grid;
             place-items: center;
-            font-size: 40px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(237, 107, 77, .25),
+                    rgba(32, 29, 56, .8)
+                ),
+                url("assets/images/media-placeholder.jpg") center / cover;
+        }
+
+        .play-button {
+            width: 75px;
+            height: 75px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(244, 237, 221, .6);
+            border-radius: 50%;
+            font-size: 22px;
         }
 
         .media-card-content {
@@ -514,110 +671,206 @@
         .media-card-content h3 {
             font-family: "Space Grotesk", sans-serif;
             font-size: 27px;
+            letter-spacing: -.04em;
         }
 
+        /* Final statement */
+
         .final-cta {
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            background: var(--coral);
-            color: var(--navy);
+            background: var(--navy);
+            color: var(--cream);
+        }
+
+        .final-cta .eyebrow {
+            color: var(--coral);
         }
 
         .cta-title {
             max-width: 1100px;
+            margin-top: 35px;
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(4rem, 11vw, 12rem);
-            line-height: .78;
-            letter-spacing: -.085em;
+            font-size: clamp(4.5rem, 11vw, 12rem);
+            font-weight: 700;
+            line-height: .75;
+            letter-spacing: -.095em;
             text-transform: uppercase;
+        }
+
+        .cta-title .accent {
+            color: var(--coral);
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 25px;
-            margin-top: 60px;
-            padding: 18px 25px;
-            background: var(--navy);
-            color: var(--cream);
+            gap: 22px;
+            margin-top: 65px;
+            padding: 19px 26px;
             border-radius: 100px;
-            font-size: 13px;
+            background: var(--coral);
+            color: var(--navy);
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: .08em;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            transition: transform .3s;
+            transition: transform .3s ease, background .3s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            background: var(--cream);
         }
 
+        /* Footer */
+
         footer {
-            padding: 60px 0 30px;
-            background: var(--navy-dark);
+            padding: 65px 0 30px;
+            background: var(--navy-deep);
         }
 
         .footer-top {
             display: flex;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 40px;
         }
 
         .footer-logo {
             font-family: "Space Grotesk", sans-serif;
-            font-size: 70px;
+            font-size: 80px;
             font-weight: 700;
-            letter-spacing: -.07em;
+            line-height: .8;
+            letter-spacing: -.09em;
         }
 
         .footer-links {
             display: flex;
-            gap: 35px;
+            gap: 30px;
             flex-wrap: wrap;
         }
 
         .footer-links a {
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            letter-spacing: .08em;
+            opacity: .75;
+            transition: opacity .2s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
         }
 
         .footer-bottom {
-            margin-top: 100px;
-            padding-top: 20px;
             display: flex;
             justify-content: space-between;
-            border-top: 1px solid rgba(244,237,221,.2);
+            gap: 20px;
+            margin-top: 110px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(244, 237, 221, .18);
             color: var(--muted);
             font-size: 12px;
         }
 
+        /* Responsive */
+
         @media (max-width: 800px) {
+
             :root {
-                --container: min(100% - 30px, 1400px);
+                --container: calc(100% - 40px);
             }
 
-            .section {
-                padding: 80px 0;
+            .navbar {
+                padding: 25px 0;
+            }
+
+            .brand img {
+                width: 43px;
+                height: 43px;
+            }
+
+            .brand-name {
+                font-size: 29px;
+            }
+
+            .menu-button {
+                font-size: 0;
+            }
+
+            .menu-icon {
+                width: 48px;
+                height: 48px;
             }
 
             .hero {
-                padding-top: 130px;
+                min-height: 100svh;
+                background-position: 65% center;
+            }
+
+            .hero-content {
+                padding: 150px 0 45px;
+            }
+
+            .hero-eyebrow {
+                margin-bottom: 45px;
+                font-size: 10px;
+                letter-spacing: .18em;
+            }
+
+            .hero-brand {
+                gap: 12px;
+                margin-bottom: 35px;
+            }
+
+            .hero-brand img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .hero-brand-name {
+                font-size: 14vw;
+            }
+
+            .hero-title {
+                font-size: 21vw;
+                line-height: .74;
             }
 
             .hero-bottom {
-                flex-direction: column;
-                align-items: flex-start;
+                display: block;
+                margin-top: 60px;
             }
 
-            .circle-arrow {
-                width: 65px;
-                height: 65px;
+            .hero-description {
+                font-size: 17px;
+                line-height: 1.65;
+            }
+
+            .hero-arrow {
+                width: 62px;
+                height: 62px;
+                margin-top: 30px;
+            }
+
+            .section {
+                padding: 90px 0;
+            }
+
+            .section-title {
+                font-size: 17vw;
             }
 
             .logos {
                 grid-template-columns: repeat(2, 1fr);
+                margin-top: 50px;
+            }
+
+            .logo-placeholder {
+                min-height: 100px;
             }
 
             .logo-placeholder:nth-child(2) {
@@ -625,30 +878,52 @@
             }
 
             .logo-placeholder:nth-child(-n+2) {
-                border-bottom: 1px solid rgba(41,37,68,.25);
+                border-bottom: 1px solid rgba(41, 37, 68, .25);
             }
 
             .event-row {
-                grid-template-columns: 80px 1fr auto;
+                grid-template-columns: 65px 1fr auto;
                 gap: 15px;
             }
 
             .event-date {
-                font-size: 18px;
+                font-size: 17px;
+            }
+
+            .event-name {
+                font-size: 25px;
+            }
+
+            .event-link {
+                width: 42px;
+                height: 42px;
             }
 
             .about-grid,
             .media-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 45px;
+            }
+
+            .about-large {
+                font-size: 13vw;
+            }
+
+            .service {
+                grid-template-columns: 40px 1fr;
+                gap: 15px;
+            }
+
+            .service-title {
+                font-size: 10vw;
             }
 
             .event-grid {
                 grid-template-columns: 1fr;
             }
 
-            .service {
-                grid-template-columns: 45px 1fr;
+            .cta-title {
+                font-size: 17vw;
             }
 
             .footer-top {
@@ -656,60 +931,104 @@
             }
 
             .footer-logo {
-                font-size: 55px;
+                font-size: 58px;
             }
 
             .footer-bottom {
-                margin-top: 60px;
                 flex-direction: column;
-                gap: 10px;
+                margin-top: 70px;
+            }
+
+            .close-menu {
+                top: 25px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+            }
+
+            .menu-links a {
+                font-size: 17vw;
             }
         }
 
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: 19vw;
+
+            :root {
+                --container: calc(100% - 30px);
             }
 
-            .section-title {
-                font-size: 16vw;
+            .hero-title {
+                font-size: 22vw;
+            }
+
+            .hero-description {
+                font-size: 16px;
             }
 
             .event-row {
-                grid-template-columns: 65px 1fr;
+                grid-template-columns: 55px 1fr;
             }
 
             .event-link {
                 display: none;
             }
 
-            .logos {
-                margin-top: 45px;
+            .logo-placeholder {
+                font-size: 14px;
             }
 
-            .logo-placeholder {
-                min-height: 100px;
+            .menu-links a {
+                font-size: 19vw;
+            }
+
+            .cta-title {
+                font-size: 18vw;
             }
         }
     </style>
 </head>
 
 <body>
+
     <header class="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo" aria-label="Arcane Events home">ARCANE</a>
-            <button class="menu-button" id="menuButton" aria-label="Open navigation menu" aria-expanded="false">
+        <div class="container nav-inner">
+
+            <a href="index.html" class="brand" aria-label="Arcane home">
+                <img src="assets/images/logo.png" alt="Arcane">
+                <span class="brand-name">ARCANE</span>
+            </a>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation"
+                aria-expanded="false"
+            >
                 MENU
+
                 <span class="menu-icon">
-                    <span></span>
+                    <span class="menu-lines">
+                        <span></span>
+                        <span></span>
+                    </span>
                 </span>
             </button>
+
         </div>
     </header>
 
     <div class="menu-overlay" id="menuOverlay">
-        <button class="close-menu" id="closeMenu" aria-label="Close navigation menu">×</button>
-        <div class="menu-overlay-inner">
+
+        <button
+            class="close-menu"
+            id="closeMenu"
+            aria-label="Close navigation"
+        >
+            ×
+        </button>
+
+        <div class="menu-inner">
+
             <ul class="menu-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="pages/about.html">About</a></li>
@@ -717,209 +1036,543 @@
                 <li><a href="pages/media.html">Media</a></li>
                 <li><a href="pages/contact.html">Contact</a></li>
             </ul>
+
         </div>
     </div>
 
     <main>
+
+        <!-- Hero -->
+
         <section class="hero">
+
             <div class="container hero-content">
-                <div class="eyebrow hero-eyebrow">Events · Experiences · Culture</div>
-                <h1 class="hero-title">
-                    <span>Make</span>
-                    <span>the room</span>
-                    <span>remember.</span>
-                </h1>
-                <div class="hero-bottom">
-                    <p class="hero-description">
-                        We create bold events, artist experiences and
-                        brand moments for people and organisations
-                        shaping Zambia's culture.
-                    </p>
-                    <a href="#contact" class="circle-arrow" aria-label="Start a conversation">↓</a>
+
+                <div class="hero-eyebrow">
+                    Lusaka / Zambia / Live since 2017
                 </div>
+
+                <h1 class="hero-title">
+                    <span>turn</span>
+                    <span>it</span>
+                    <span class="accent">up.</span>
+                </h1>
+
+                <div class="hero-bottom">
+
+                    <p class="hero-description">
+                        Arcane is an artist management team, event maker
+                        and brand experience partner for the moments that
+                        move culture forward.
+                    </p>
+
+                    <a
+                        href="#contact"
+                        class="hero-arrow"
+                        aria-label="Go to contact"
+                    >
+                        ↓
+                    </a>
+
+                </div>
+
             </div>
+
         </section>
+
+        <!-- Social proof -->
 
         <section class="section social-proof">
+
             <div class="container">
-                <div class="eyebrow">Trusted by</div>
-                <h2 class="section-title">People who<br>make things happen.</h2>
-                <div class="logos">
-                    <div class="logo-placeholder">Partner</div>
-                    <div class="logo-placeholder">Partner</div>
-                    <div class="logo-placeholder">Venue</div>
-                    <div class="logo-placeholder">Venue</div>
+
+                <div class="eyebrow">
+                    Trusted by
                 </div>
+
+                <h2 class="section-title">
+                    People who<br>
+                    make things happen.
+                </h2>
+
+                <div class="logos">
+
+                    <div class="logo-placeholder">
+                        Partner
+                    </div>
+
+                    <div class="logo-placeholder">
+                        Partner
+                    </div>
+
+                    <div class="logo-placeholder">
+                        Venue
+                    </div>
+
+                    <div class="logo-placeholder">
+                        Venue
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
+
+        <!-- Upcoming events -->
 
         <section class="section upcoming">
+
             <div class="container">
-                <div class="eyebrow">What's next</div>
-                <h2 class="section-title">Possible<br>dates.</h2>
-                <div class="event-list">
-                    <article class="event-row">
-                        <div class="event-date">14<br>SEP</div>
-                        <div>
-                            <h3 class="event-name">Arcane Live</h3>
-                            <p class="event-location">Lusaka, Zambia</p>
-                        </div>
-                        <a href="pages/contact.html" class="event-link">↗</a>
-                    </article>
-                    <article class="event-row">
-                        <div class="event-date">28<br>SEP</div>
-                        <div>
-                            <h3 class="event-name">Experience Night</h3>
-                            <p class="event-location">Lusaka, Zambia</p>
-                        </div>
-                        <a href="pages/contact.html" class="event-link">↗</a>
-                    </article>
-                    <article class="event-row">
-                        <div class="event-date">10<br>OCT</div>
-                        <div>
-                            <h3 class="event-name">The Culture Session</h3>
-                            <p class="event-location">Zambia</p>
-                        </div>
-                        <a href="pages/contact.html" class="event-link">↗</a>
-                    </article>
+
+                <div class="eyebrow">
+                    What's next
                 </div>
+
+                <h2 class="section-title">
+                    Possible<br>
+                    dates.
+                </h2>
+
+                <div class="event-list">
+
+                    <article class="event-row">
+
+                        <div class="event-date">
+                            14<br>SEP
+                        </div>
+
+                        <div>
+                            <h3 class="event-name">
+                                Arcane Live
+                            </h3>
+
+                            <p class="event-location">
+                                Lusaka, Zambia
+                            </p>
+                        </div>
+
+                        <a
+                            href="pages/contact.html"
+                            class="event-link"
+                            aria-label="Enquire about Arcane Live"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+                    <article class="event-row">
+
+                        <div class="event-date">
+                            28<br>SEP
+                        </div>
+
+                        <div>
+                            <h3 class="event-name">
+                                Experience Night
+                            </h3>
+
+                            <p class="event-location">
+                                Lusaka, Zambia
+                            </p>
+                        </div>
+
+                        <a
+                            href="pages/contact.html"
+                            class="event-link"
+                            aria-label="Enquire about Experience Night"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+                    <article class="event-row">
+
+                        <div class="event-date">
+                            10<br>OCT
+                        </div>
+
+                        <div>
+                            <h3 class="event-name">
+                                The Culture Session
+                            </h3>
+
+                            <p class="event-location">
+                                Zambia
+                            </p>
+                        </div>
+
+                        <a
+                            href="pages/contact.html"
+                            class="event-link"
+                            aria-label="Enquire about The Culture Session"
+                        >
+                            ↗
+                        </a>
+
+                    </article>
+
+                </div>
+
             </div>
+
         </section>
+
+        <!-- About -->
 
         <section class="section about-preview">
+
             <div class="container">
-                <div class="eyebrow">About Arcane</div>
-                <div class="about-grid">
-                    <h2 class="about-large">Good nights are built, not wished for.</h2>
-                    <div class="about-side">
-                        <p>Arcane is a Zambian events and creative experiences company connecting artists, brands, audiences and ideas.</p>
-                        <a href="pages/about.html" class="text-link">Discover Arcane <span>↗</span></a>
-                    </div>
+
+                <div class="eyebrow">
+                    About Arcane
                 </div>
+
+                <div class="about-grid">
+
+                    <h2 class="about-large">
+                        Good nights are built,
+                        not wished for.
+                    </h2>
+
+                    <div class="about-side">
+
+                        <p>
+                            Arcane brings together artists, brands,
+                            audiences and ideas to create experiences
+                            that people don't just attend — they remember.
+                        </p>
+
+                        <a
+                            href="pages/about.html"
+                            class="text-link"
+                        >
+                            Discover Arcane
+                            <span>↗</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
+
+        <!-- Services -->
 
         <section class="section services">
+
             <div class="container">
-                <div class="eyebrow">What we do</div>
-                <h2 class="section-title">Built for<br>the moment.</h2>
-                <div class="service-list">
-                    <article class="service">
-                        <span class="service-number">01</span>
-                        <div>
-                            <h3 class="service-title">Event Production</h3>
-                            <p class="service-description">From concept and planning to technical production and on-site execution, we build events from the ground up.</p>
-                        </div>
-                    </article>
-                    <article class="service">
-                        <span class="service-number">02</span>
-                        <div>
-                            <h3 class="service-title">Artist Management</h3>
-                            <p class="service-description">Connecting artists with performances, brands, campaigns and opportunities that move their careers forward.</p>
-                        </div>
-                    </article>
-                    <article class="service">
-                        <span class="service-number">03</span>
-                        <div>
-                            <h3 class="service-title">Brand Experiences</h3>
-                            <p class="service-description">Culture-driven activations and experiences designed to connect brands with real audiences.</p>
-                        </div>
-                    </article>
-                    <article class="service">
-                        <span class="service-number">04</span>
-                        <div>
-                            <h3 class="service-title">Partnerships</h3>
-                            <p class="service-description">Strategic collaborations between brands, artists, venues, communities and media.</p>
-                        </div>
-                    </article>
+
+                <div class="eyebrow">
+                    What we do
                 </div>
+
+                <h2 class="section-title">
+                    Built for<br>
+                    the moment.
+                </h2>
+
+                <div class="service-list">
+
+                    <article class="service">
+
+                        <span class="service-number">
+                            01
+                        </span>
+
+                        <div>
+                            <h3 class="service-title">
+                                Event Production
+                            </h3>
+
+                            <p class="service-description">
+                                From concept and planning to technical
+                                production and on-site execution, we build
+                                events from the ground up.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="service">
+
+                        <span class="service-number">
+                            02
+                        </span>
+
+                        <div>
+                            <h3 class="service-title">
+                                Artist Management
+                            </h3>
+
+                            <p class="service-description">
+                                Connecting artists with performances,
+                                brands, campaigns and opportunities that
+                                move their careers forward.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="service">
+
+                        <span class="service-number">
+                            03
+                        </span>
+
+                        <div>
+                            <h3 class="service-title">
+                                Brand Experiences
+                            </h3>
+
+                            <p class="service-description">
+                                Culture-driven activations and experiences
+                                designed to connect brands with real
+                                audiences.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="service">
+
+                        <span class="service-number">
+                            04
+                        </span>
+
+                        <div>
+                            <h3 class="service-title">
+                                Partnerships
+                            </h3>
+
+                            <p class="service-description">
+                                Strategic collaborations between brands,
+                                artists, venues, communities and media.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
             </div>
+
         </section>
 
+        <!-- Recent work -->
+
         <section class="section past-events">
+
             <div class="container">
-                <div class="eyebrow">Recent work</div>
-                <h2 class="section-title">Proof<br>of life.</h2>
+
+                <div class="eyebrow">
+                    Recent work
+                </div>
+
+                <h2 class="section-title">
+                    Proof<br>
+                    of life.
+                </h2>
+
                 <div class="event-grid">
+
                     <article class="event-card">
+
                         <div class="event-image"></div>
+
                         <div class="event-card-content">
                             <h3>Event One</h3>
                             <p>Lusaka · Zambia</p>
                         </div>
+
                     </article>
+
                     <article class="event-card">
+
                         <div class="event-image"></div>
+
                         <div class="event-card-content">
                             <h3>Event Two</h3>
                             <p>Lusaka · Zambia</p>
                         </div>
+
                     </article>
+
                     <article class="event-card">
+
                         <div class="event-image"></div>
+
                         <div class="event-card-content">
                             <h3>Event Three</h3>
                             <p>Zambia</p>
                         </div>
+
                     </article>
+
                     <article class="event-card">
+
                         <div class="event-image"></div>
+
                         <div class="event-card-content">
                             <h3>Event Four</h3>
                             <p>Zambia</p>
                         </div>
+
                     </article>
+
                 </div>
+
             </div>
+
         </section>
 
+        <!-- Media -->
+
         <section class="section media">
+
             <div class="container">
-                <div class="eyebrow">Field notes</div>
-                <h2 class="section-title">Behind<br>the moments.</h2>
+
+                <div class="eyebrow">
+                    Field notes
+                </div>
+
+                <h2 class="section-title">
+                    Behind<br>
+                    the moments.
+                </h2>
+
                 <div class="media-grid">
+
                     <article class="media-card">
-                        <div class="media-visual">▶</div>
+
+                        <div class="media-visual">
+                            <span class="play-button">
+                                ▶
+                            </span>
+                        </div>
+
                         <div class="media-card-content">
                             <h3>Watch the latest</h3>
                         </div>
+
                     </article>
+
                     <article class="media-card">
-                        <div class="media-visual">✦</div>
+
+                        <div class="media-visual">
+                            <span class="play-button">
+                                ✦
+                            </span>
+                        </div>
+
                         <div class="media-card-content">
                             <h3>Explore the gallery</h3>
                         </div>
+
                     </article>
+
                 </div>
-                <a href="pages/media.html" class="text-link">Explore media <span>↗</span></a>
+
+                <a
+                    href="pages/media.html"
+                    class="text-link"
+                >
+                    Explore media
+                    <span>↗</span>
+                </a>
+
             </div>
+
         </section>
 
-        <section class="section final-cta" id="contact">
+        <!-- Final statement -->
+
+        <section
+            class="section final-cta"
+            id="contact"
+        >
+
             <div class="container">
-                <div class="eyebrow">Have an idea?</div>
-                <h2 class="cta-title">What will<br>we make<br>loud?</h2>
-                <a href="pages/contact.html" class="cta-button">Start the conversation <span>↗</span></a>
+
+                <div class="eyebrow">
+                    Arcane Events
+                </div>
+
+                <h2 class="cta-title">
+                    Make<br>
+                    the room<br>
+                    <span class="accent">remember.</span>
+                </h2>
+
+                <a
+                    href="pages/contact.html"
+                    class="cta-button"
+                >
+                    Start the conversation
+                    <span>↗</span>
+                </a>
+
             </div>
+
         </section>
+
     </main>
 
+    <!-- Footer -->
+
     <footer>
+
         <div class="container">
+
             <div class="footer-top">
-                <a href="index.html" class="footer-logo">ARCANE</a>
+
+                <a
+                    href="index.html"
+                    class="footer-logo"
+                >
+                    ARCANE
+                </a>
+
                 <nav class="footer-links">
-                    <a href="pages/about.html">About</a>
-                    <a href="pages/services.html">Services</a>
-                    <a href="pages/media.html">Media</a>
-                    <a href="pages/contact.html">Contact</a>
+
+                    <a href="pages/about.html">
+                        About
+                    </a>
+
+                    <a href="pages/services.html">
+                        Services
+                    </a>
+
+                    <a href="pages/media.html">
+                        Media
+                    </a>
+
+                    <a href="pages/contact.html">
+                        Contact
+                    </a>
+
                 </nav>
+
             </div>
+
             <div class="footer-bottom">
-                <span>© 2026 Arcane Events</span>
-                <span>Lusaka, Zambia</span>
+
+                <span>
+                    © 2026 Arcane
+                </span>
+
+                <span>
+                    Lusaka, Zambia
+                </span>
+
             </div>
+
         </div>
+
     </footer>
 
     <script>
@@ -931,16 +1584,17 @@
         function openMenu() {
             menuOverlay.classList.add("active");
             menuButton.setAttribute("aria-expanded", "true");
-            document.body.style.overflow = "hidden";
+            document.body.classList.add("menu-open");
         }
 
         function closeNavigation() {
             menuOverlay.classList.remove("active");
             menuButton.setAttribute("aria-expanded", "false");
-            document.body.style.overflow = "";
+            document.body.classList.remove("menu-open");
         }
 
         menuButton.addEventListener("click", openMenu);
+
         closeMenu.addEventListener("click", closeNavigation);
 
         menuLinks.forEach(link => {
@@ -953,5 +1607,6 @@
             }
         });
     </script>
+
 </body>
 </html>
